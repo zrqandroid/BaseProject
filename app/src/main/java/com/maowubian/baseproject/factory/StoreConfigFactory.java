@@ -21,9 +21,9 @@ public enum StoreConfigFactory {
 
     public final int size;
 
-    StoreConfigFactory(String name, int size) {
+    StoreConfigFactory(String name, int limitSize) {
         this.name = name;
-        this.size = size;
+        this.size = limitSize;
     }
 
     private final static long MB = 1024 * 1024;
