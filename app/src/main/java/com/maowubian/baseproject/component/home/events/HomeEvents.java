@@ -1,0 +1,9 @@
+package com.maowubian.baseproject.component.home.events;
+
+/**
+ * Created by zhuruqiao on 16/8/3.
+ */
+public class HomeEvents {
+
+
+}
