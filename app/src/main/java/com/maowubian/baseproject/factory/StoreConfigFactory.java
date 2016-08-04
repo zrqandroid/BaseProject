@@ -2,7 +2,7 @@ package com.maowubian.baseproject.factory;
 
 import android.os.Environment;
 
-import com.maowubian.baseproject.api.App;
+import com.maowubian.baseproject.api.AppContext;
 import com.orhanobut.logger.Logger;
 
 import java.io.File;
@@ -15,7 +15,7 @@ public enum StoreConfigFactory {
     DIR_HTTP("http/", 1),
     DIR_IMAGE("image/", 20),
     DIR_LOG("log/", 20),
-    DIR_DOWNLOAD("download/", 50);
+    DIR_DOWNLOAD("Download/", 50);
 
     public final String name;
 
@@ -37,15 +37,15 @@ public enum StoreConfigFactory {
                 path = getPath(file);
                 break;
             case DIR_HTTP:
-                file = new File(App.mContext.getExternalCacheDir(), StoreConfigFactory.DIR_HTTP.name);
+                file = new File(AppContext.mContext.getExternalCacheDir(), StoreConfigFactory.DIR_HTTP.name);
                 path = getPath(file);
                 break;
             case DIR_IMAGE:
-                file = new File(App.mContext.getExternalCacheDir(), StoreConfigFactory.DIR_IMAGE.name);
+                file = new File(AppContext.mContext.getExternalCacheDir(), StoreConfigFactory.DIR_IMAGE.name);
                 path = getPath(file);
                 break;
             case DIR_LOG:
-                file = new File(App.mContext.getCacheDir(), StoreConfigFactory.DIR_LOG.name);
+                file = new File(AppContext.mContext.getCacheDir(), StoreConfigFactory.DIR_LOG.name);
                 path = getPath(file);
                 break;
 

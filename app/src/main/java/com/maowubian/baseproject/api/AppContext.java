@@ -4,21 +4,24 @@ import android.app.Application;
 import android.content.Context;
 
 import com.maowubian.baseproject.factory.StoreConfigFactory;
+import com.maowubian.baseproject.utils.DimensUtil;
 import com.orhanobut.logger.Logger;
 
 
 /**
  * Created by zhuruqiao on 16/8/1.
  */
-public class App extends Application {
+public class AppContext extends Application {
 
     public static Context mContext;
+    public static int statusBarHeight;
 
     @Override
     public void onCreate() {
         super.onCreate();
         mContext=this;
-        Logger.i("path:%s", StoreConfigFactory.getStorePath(StoreConfigFactory.DIR_HTTP));
+        statusBarHeight= DimensUtil.getStatusbarHeight();
+
 
     }
 

@@ -10,8 +10,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:name=".api.App"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:name=".api.AppContext"
+        android:theme="@style/NoActionBar">
         <activity android:name=".component.home.ui.HomePageActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

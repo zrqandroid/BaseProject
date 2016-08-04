@@ -3,19 +3,24 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/sub_item_1"
-        android:icon="@mipmap/ic_launcher"
+        android:id="@+id/music"
+        android:icon="@mipmap/icon_music"
         android:title="@string/music" />
     <item
-        android:id="@+id/sub_item_2"
-        android:icon="@mipmap/ic_launcher"
-        android:title="@string/video" />
+        android:id="@+id/movie"
+        android:icon="@mipmap/icon_movie"
+        android:title="@string/movie" />
+
     <item
-        android:id="@+id/sub_item_3"
-        android:icon="@mipmap/ic_launcher"
+        android:id="@+id/game"
+        android:icon="@mipmap/icon_game"
+        android:title="@string/game" />
+    <item
+        android:id="@+id/study"
+        android:icon="@mipmap/icon_study"
+        android:title="@string/study" />
+    <item
+        android:id="@+id/about"
+        android:icon="@mipmap/icon_about"
         android:title="@string/about" />
-    <item
-        android:id="@+id/sub_item_4"
-        android:icon="@mipmap/ic_launcher"
-        android:title="@string/advice" />
 </menu>

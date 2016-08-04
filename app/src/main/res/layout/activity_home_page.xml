@@ -4,32 +4,21 @@
 
     <data class="HomeDatabinding">
 
+
+        <import type="com.maowubian.baseproject.component.home.events.HomeEvents" />
     </data>
-
-
 
 
     <android.support.v4.widget.DrawerLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
-        <Space
-            android:id="@+id/space"
-            android:background="#00ff00"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+
+
         <android.support.v4.view.ViewPager
             android:id="@+id/vp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:overScrollMode="never"
-
-            />
-        </LinearLayout>
+            android:overScrollMode="never" />
 
         <android.support.design.widget.NavigationView
             android:id="@+id/nv"
@@ -39,6 +28,42 @@
             android:clipToPadding="true"
             android:fitsSystemWindows="true"
             app:headerLayout="@layout/header"
-            app:menu="@menu/drawer" />
+            app:itemIconTint="@color/navigation_selector"
+            app:itemTextAppearance="@style/navigation_item"
+            app:itemTextColor="@color/navigation_selector"
+            app:menu="@menu/drawer">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="bottom"
+                android:background="@color/color5"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/sp14"
+                    android:layout_height="match_parent"
+                    android:text="@string/setting" />
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/white"
+                    />
+
+                <TextView
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:textSize="@dimen/sp14"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/exit" />
+
+            </LinearLayout>
+
+        </android.support.design.widget.NavigationView>
     </android.support.v4.widget.DrawerLayout>
 </layout>

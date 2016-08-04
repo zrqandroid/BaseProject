@@ -1,8 +1,11 @@
 <resources>
     <string name="app_name">BaseProject</string>
     <string name="music">推荐好歌</string>
-    <string name="video">爱看电影</string>
-    <string name="advice">我有建议</string>
+    <string name="movie">爱看电影</string>
+    <string name="study">好好学习</string>
     <string name="about">关于我们</string>
+    <string name="game">来玩游戏</string>
+    <string name="exit">退出应用</string>
+    <string name="setting">设置</string>
 
 </resources>

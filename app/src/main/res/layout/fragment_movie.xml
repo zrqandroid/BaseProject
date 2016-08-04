@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data class="MovieDataBinding">
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:background="@color/color2"
+        android:layout_height="match_parent">
+        <Space
+            android:id="@+id/space"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingRight="@dimen/dp10"
+            android:gravity="right"
+            android:textSize="@dimen/sp18"
+            android:paddingTop="@dimen/dp5"
+            android:textColor="@color/white"
+            android:paddingBottom="@dimen/dp5"
+            android:text="电影"
+            />
+    </LinearLayout>
+</layout>

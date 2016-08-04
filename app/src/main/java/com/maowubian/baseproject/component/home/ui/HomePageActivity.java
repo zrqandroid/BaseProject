@@ -11,16 +11,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
-import android.widget.LinearLayout;
 
 import com.maowubian.baseproject.R;
+import com.maowubian.baseproject.component.game.ui.GameFragment;
 import com.maowubian.baseproject.component.home.adapter.HomeVpAdapter;
+import com.maowubian.baseproject.component.home.events.HomeEvents;
+import com.maowubian.baseproject.component.movie.ui.MovieFragment;
+import com.maowubian.baseproject.component.music.ui.MusicFragment;
 import com.maowubian.baseproject.databinding.HomeDatabinding;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,64 +31,46 @@ import java.util.List;
 public class HomePageActivity extends AppCompatActivity {
 
     private HomeDatabinding databinding;
+
     private List<Fragment> fragments = new ArrayList<>();
+
     private Context mContext;
 
     @Override
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        fullScreenWithTitleBar();
+        mContext = this;
+        databinding = DataBindingUtil.setContentView(this, R.layout.activity_home_page);
+        HomeEvents.onNavigationCLick(databinding.nv);
+        init();
+
+    }
+
+    private void init() {
+
+
+        MusicFragment musicFragment = new MusicFragment();
+        MovieFragment movieFragment = new MovieFragment();
+        GameFragment gameFragment = new GameFragment();
+
+        fragments.add(musicFragment);
+        fragments.add(movieFragment);
+        fragments.add(gameFragment);
+
+        databinding.vp.setAdapter(new HomeVpAdapter(getSupportFragmentManager(), fragments));
+
+
+    }
+
+    private void fullScreenWithTitleBar() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             //透明状态栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             //透明导航栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
-
-        mContext = this;
-
-        databinding = DataBindingUtil.setContentView(this, R.layout.activity_home_page);
-        databinding.space.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,getStatusbarHeight()));
-
-
-        AppFragment appFragment1 = new AppFragment();
-        AppFragment appFragment2 = new AppFragment();
-        AppFragment appFragment3 = new AppFragment();
-
-        fragments.add(appFragment1);
-        fragments.add(appFragment2);
-        fragments.add(appFragment3);
-        databinding.vp.setAdapter(new HomeVpAdapter(getSupportFragmentManager(), fragments));
-
-        Menu menu = databinding.nv.getMenu();
-
-        menu.getItem(0).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-
-                Snackbar bar = Snackbar.make(databinding.nv, "哈哈哈", Snackbar.LENGTH_SHORT);
-                bar.show();
-                View view = bar.getView();
-                view.setBackgroundColor(0x55f44336);
-                view.setAnimation(new AlphaAnimation(0, 1));
-
-                return true;
-            }
-        });
-
-
     }
 
-    private int getStatusbarHeight() {
-        try {
-            Class<?> c = Class.forName("com.android.internal.R$dimen");
-            Object o = c.newInstance();
-            Field field = c.getField("status_bar_height");
-            int i = Integer.parseInt(field.get(o).toString());
-            return getResources().getDimensionPixelOffset(i);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return 0;
-    }
 }
