@@ -1,26 +1,29 @@
 package com.maowubian.baseproject.component.home.ui;
 
+import android.app.Service;
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 import android.view.WindowManager;
-import android.view.animation.AlphaAnimation;
 
 import com.maowubian.baseproject.R;
 import com.maowubian.baseproject.component.game.ui.GameFragment;
 import com.maowubian.baseproject.component.home.adapter.HomeVpAdapter;
-import com.maowubian.baseproject.component.home.events.HomeEvents;
+import com.maowubian.baseproject.component.home.events.NavigationPageHandler;
 import com.maowubian.baseproject.component.movie.ui.MovieFragment;
+import com.maowubian.baseproject.component.music.media.MediaConn;
+import com.maowubian.baseproject.component.music.media.PlayerEvent;
+import com.maowubian.baseproject.component.music.media.service.MediaPalyerService;
 import com.maowubian.baseproject.component.music.ui.MusicFragment;
 import com.maowubian.baseproject.databinding.HomeDatabinding;
+import com.orhanobut.logger.Logger;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +38,8 @@ public class HomePageActivity extends AppCompatActivity {
     private List<Fragment> fragments = new ArrayList<>();
 
     private Context mContext;
+    private MediaConn conn;
+    private NavigationPageHandler processer;
 
     @Override
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
@@ -42,7 +47,11 @@ public class HomePageActivity extends AppCompatActivity {
         fullScreenWithTitleBar();
         mContext = this;
         databinding = DataBindingUtil.setContentView(this, R.layout.activity_home_page);
-        HomeEvents.onNavigationCLick(databinding.nv);
+        conn = new MediaConn();
+        bindService(new Intent(mContext, MediaPalyerService.class), conn, Service.BIND_AUTO_CREATE);
+        processer = new NavigationPageHandler(databinding.nv, conn);
+
+//        HomeEvents.onNavigationCLick(databinding.nv,conn);
         init();
 
     }
@@ -72,5 +81,10 @@ public class HomePageActivity extends AppCompatActivity {
         }
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbindService(conn);
+        processer.unRegister();
+    }
 }

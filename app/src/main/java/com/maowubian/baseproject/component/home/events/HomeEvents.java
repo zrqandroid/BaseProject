@@ -10,8 +10,11 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.maowubian.baseproject.R;
+import com.maowubian.baseproject.component.music.data.PlayerStatus;
+import com.maowubian.baseproject.component.music.media.MediaConn;
 import com.maowubian.baseproject.databinding.HeaderBinding;
 import com.maowubian.baseproject.factory.StoreConfigFactory;
+
 
 import java.io.File;
 
@@ -21,22 +24,24 @@ import java.io.File;
 public class HomeEvents {
 
 
-    public static void onNavigationCLick(NavigationView nv) {
+    public static void onNavigationCLick(NavigationView nv, MediaConn conn) {
 
         doMenuItemClick(nv.getMenu());
 
         View headerView = nv.getHeaderView(0);
         HeaderBinding bind = DataBindingUtil.bind(headerView);
-
-
+        PlayerStatus playerStatus = new PlayerStatus();
+        PlayControlEvent playControlEvent = new PlayControlEvent(conn,playerStatus);
+        bind.setPlayControl(playControlEvent);
         ImageView bg = (ImageView) headerView.findViewById(R.id.bg);
-        Glide.with(bg.getContext()).load(new File(StoreConfigFactory.getStorePath(StoreConfigFactory.DIR_DOWNLOAD),"xuekaiqi.jpeg")).into(bg);
 
+
+        Glide.with(bg.getContext()).load(new File(StoreConfigFactory.getStorePath(StoreConfigFactory.DIR_DOWNLOAD), "xuekaiqi.jpeg")).into(bg);
 
 
     }
 
-    private static void doMenuItemClick( Menu menu){
+    private static void doMenuItemClick(Menu menu) {
         for (int i = 0; i < menu.size(); i++) {
 
             MenuItem item = menu.getItem(i);
@@ -69,6 +74,7 @@ public class HomeEvents {
         }
 
     }
+
     private static void doMusic() {
 
     }

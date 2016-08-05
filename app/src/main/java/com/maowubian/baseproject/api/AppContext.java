@@ -2,7 +2,9 @@ package com.maowubian.baseproject.api;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 
+import com.maowubian.baseproject.component.music.media.service.MediaPalyerService;
 import com.maowubian.baseproject.factory.StoreConfigFactory;
 import com.maowubian.baseproject.utils.DimensUtil;
 import com.orhanobut.logger.Logger;
@@ -21,8 +23,13 @@ public class AppContext extends Application {
         super.onCreate();
         mContext=this;
         statusBarHeight= DimensUtil.getStatusbarHeight();
+        startMediaService();
 
 
+    }
+
+    private void startMediaService() {
+        startService(new Intent(mContext, MediaPalyerService.class));
     }
 
 //    private void initOkhttp() {

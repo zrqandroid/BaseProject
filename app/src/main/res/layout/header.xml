@@ -2,7 +2,9 @@
 
 <layout>
     <data class="HeaderBinding">
-
+        <variable
+            name="playControl"
+            type="com.maowubian.baseproject.component.home.events.PlayControlEvent"/>
 
     </data>
 
@@ -18,11 +20,11 @@
             android:scaleType="fitCenter" />
 
         <ProgressBar
+            android:id="@+id/music_progress"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp4"
-            android:progress="20"
-            android:secondaryProgress="40" />
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -50,12 +52,14 @@
                 android:src="@drawable/pre" />
 
             <ImageButton
+                android:id="@+id/play"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1.5"
                 android:background="@null"
                 android:scaleType="fitCenter"
-                android:src="@drawable/paly" />
+                android:onClick="@{playControl.start}"
+                android:src="@drawable/play" />
 
             <ImageButton
                 android:layout_width="0dp"
