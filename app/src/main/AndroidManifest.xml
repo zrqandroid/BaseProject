@@ -28,7 +28,12 @@
         <service
             android:name=".component.music.media.service.MediaPalyerService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true"
+            />
+
+        <activity android:name=".component.music.ui.MusicListActivity"
+            android:theme="@style/ShowFromBottomHideBottom"
+            ></activity>
     </application>
 
 </manifest>

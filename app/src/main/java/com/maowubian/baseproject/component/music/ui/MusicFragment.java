@@ -23,8 +23,8 @@ public class MusicFragment extends BaseFragment<MusicDataBinding> {
     @Override
     protected void initView(MusicDataBinding binding) {
         binding.banner.setAdapter(new BannerAdapter(mContext));
-        binding.musicList.setLayoutManager(new LinearLayoutManager(mContext));
-        binding.musicList.setAdapter(new MusicListAdapter(mContext));
+//        binding.musicList.setLayoutManager(new LinearLayoutManager(mContext));
+//        binding.musicList.setAdapter(new MusicListAdapter(mContext));
 
     }
 

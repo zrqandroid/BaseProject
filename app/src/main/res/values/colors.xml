@@ -19,9 +19,12 @@
     <color name="text2">#838383</color>
     <color name="text3">#82abba</color>
     <color name="white">#ffffff</color>
+    <color name="transparent">#00FFFFFF</color>
     <color name="white88">#88ffffff</color>
     <color name="white55">#55ffffff</color>
     <color name="gray">#555555</color>
+    <color name="gray38">#383838</color>
+    <color name="grayD">#DDDDDD</color>
     <color name="black">#000000</color>
     <color name="black83">#83000000</color>
 

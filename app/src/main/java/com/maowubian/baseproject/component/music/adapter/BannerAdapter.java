@@ -1,6 +1,7 @@
 package com.maowubian.baseproject.component.music.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -19,8 +20,10 @@ import java.util.List;
 public class BannerAdapter extends PagerAdapter {
 
     private List<View> views;
+    private Context mContext;
 
     public BannerAdapter(Context mContext){
+        this.mContext=mContext;
         views=new ArrayList<>();
         for (int i =0;i<6;i++){
             View inflate = View.inflate(mContext, R.layout.banner, null);
@@ -35,7 +38,11 @@ public class BannerAdapter extends PagerAdapter {
         View view = views.get(position);
         ImageView viewById = (ImageView) view.findViewById(R.id.banner);
         container.addView(view);
-        GlideWrapper.show(viewById);
+        if (position%2==0){
+            viewById.setBackgroundColor(Color.GREEN);
+        }else {
+            viewById.setBackgroundColor(Color.BLUE);
+        }
         return view;
     }
 

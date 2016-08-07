@@ -2,24 +2,23 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data class="MusicDataBinding">
-
+        <import type="com.maowubian.baseproject.component.music.events.MusicPageEvent"/>
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
         android:orientation="vertical">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/color1"
-            >
+            android:background="@drawable/color1">
 
             <RelativeLayout
-                android:layout_alignParentBottom="true"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp30">
+                android:layout_height="@dimen/dp30"
+                android:layout_alignParentBottom="true">
 
                 <TextView
                     android:id="@+id/tv_title"
@@ -59,20 +58,171 @@
             </RelativeLayout>
         </RelativeLayout>
 
-
-
-            <android.support.v4.view.ViewPager
-                android:id="@+id/banner"
-                android:layout_width="match_parent"
-                android:layout_height="240dp"
-                android:overScrollMode="never" />
-
-
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/music_list"
+        <ScrollView
             android:overScrollMode="never"
+            android:scrollbars="none"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+           >
+
+
+
+        <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:id="@+id/music_list"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:overScrollMode="never" />-->
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+              >
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:overScrollMode="never" />
+                <LinearLayout
+                    android:onClick="@{MusicPageEvent.toLocalList}"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp50"
+                    android:gravity="center_vertical"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp35"
+                        android:layout_height="@dimen/dp35"
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/icon_local_list" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/dp4"
+                        android:background="@drawable/bg_button_line"
+                        >
+
+                        <TextView
+                            android:layout_marginLeft="@dimen/dp5"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:text="@string/local_list" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp50"
+                    android:onClick="@{MusicPageEvent.toFavouriteList}"
+                    android:gravity="center_vertical"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp35"
+                        android:layout_height="@dimen/dp35"
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/icon_favourite_list" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/dp4"
+                        android:background="@drawable/bg_button_line">
+
+                        <TextView
+                            android:layout_marginLeft="@dimen/dp5"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:text="@string/favourite" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp50"
+                    android:gravity="center_vertical"
+                    android:background="@color/white"
+                    android:onClick="@{MusicPageEvent.toRecentPlayList}"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp35"
+                        android:layout_height="@dimen/dp35"
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/icon_recent" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/dp4"
+                        android:background="@drawable/bg_button_line">
+
+                        <TextView
+                            android:layout_marginLeft="@dimen/dp5"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp50"
+                            android:gravity="center_vertical"
+                            android:text="@string/recent_play" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:background="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp50"
+                    android:gravity="center_vertical"
+                    android:onClick="@{MusicPageEvent.toLocalDownlaodList}"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp35"
+                        android:layout_height="@dimen/dp35"
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/icon_down_list" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/dp4"
+                        android:background="@drawable/bg_button_line">
+
+                        <TextView
+                            android:layout_marginLeft="@dimen/dp5"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp50"
+                            android:gravity="center_vertical"
+                            android:text="@string/local_download" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="@dimen/dp5"
+                    android:layout_width="match_parent"
+                    android:background="@color/color1"
+                    android:layout_height="@dimen/dp100">
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="@dimen/dp5"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp100"
+
+                    android:background="@color/color2"></LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="@dimen/dp5"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp100"
+                    android:background="@color/color3"
+                    ></LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 </layout>
