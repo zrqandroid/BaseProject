@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TransStatusBar" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <!-- 设置导航栏和状态栏成半透明的 -->
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <!-- 避免控件都会顶到状态栏上 -->
+        <item name="android:fitsSystemWindows">true</item>
+    </style>
+</resources>

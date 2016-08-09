@@ -8,6 +8,7 @@
     <color name="color183">#8381c2d6</color>
     <color name="color166">#6681c2d6</color>
     <color name="color2">#8192d6</color>
+    <color name="color283">#838192d6</color>
     <color name="color266">#668192d6</color>
     <color name="color366">#66d9b3e6</color>
     <color name="color3">#d9b3e6</color>
@@ -24,7 +25,9 @@
     <color name="white55">#55ffffff</color>
     <color name="gray">#555555</color>
     <color name="gray38">#383838</color>
+    <color name="gray83">#838383</color>
     <color name="grayD">#DDDDDD</color>
+    <color name="grayC">#CCCCCC</color>
     <color name="black">#000000</color>
     <color name="black83">#83000000</color>
 

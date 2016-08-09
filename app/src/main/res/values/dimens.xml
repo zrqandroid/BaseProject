@@ -18,4 +18,6 @@
     <dimen name="dp2">2dp</dimen>
     <dimen name="dp4">4dp</dimen>
     <dimen name="dp50">50dp</dimen>
+    <dimen name="sp12">12sp</dimen>
+    <dimen name="sp10">10sp</dimen>
 </resources>
