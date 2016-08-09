@@ -1,1 +1,1 @@
-include  ':commonutils'
+include ':app', ':commonutils'
