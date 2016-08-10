@@ -1,14 +1,10 @@
 package com.maowubian.baseproject.component.home.events;
 
-import android.databinding.DataBindingUtil;
 import android.support.design.widget.NavigationView;
-import android.view.View;
 
-import com.maowubian.baseproject.component.music.data.PlayerStatus;
 import com.maowubian.baseproject.component.music.media.MediaConn;
 import com.maowubian.baseproject.component.music.media.PlayerEvent;
 import com.maowubian.baseproject.databinding.HeaderBinding;
-import com.maowubian.baseproject.wrapper.GlideWrapper;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -24,12 +20,7 @@ public class NavigationPageHandler {
 
     public NavigationPageHandler(NavigationView nv, MediaConn conn) {
         EventBus.getDefault().register(this);
-        View headerView = nv.getHeaderView(0);
-        bind = DataBindingUtil.bind(headerView);
-        PlayerStatus playerStatus = new PlayerStatus();
-        PlayControlEvent playControlEvent = new PlayControlEvent(conn, playerStatus);
-        bind.setPlayControl(playControlEvent);
-        GlideWrapper.show(bind.bg);
+
 
     }
 

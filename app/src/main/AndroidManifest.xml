@@ -30,8 +30,7 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".component.music.ui.MusicListActivity"
-            ></activity>
+        <activity android:name=".component.music.ui.MusicListActivity" />
     </application>
 
 </manifest>

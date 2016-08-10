@@ -120,7 +120,7 @@ public class SpUtils {
     }
 
     /**
-     * getBoolean with default boolean
+     * getBoolean with default value false
      * @param mContext
      * @param tag
      * @return

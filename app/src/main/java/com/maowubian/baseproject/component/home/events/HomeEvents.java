@@ -1,7 +1,6 @@
 package com.maowubian.baseproject.component.home.events;
 
 import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
 import android.support.design.widget.NavigationView;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,6 +11,7 @@ import com.bumptech.glide.Glide;
 import com.maowubian.baseproject.R;
 import com.maowubian.baseproject.component.music.data.PlayerStatus;
 import com.maowubian.baseproject.component.music.media.MediaConn;
+import com.maowubian.baseproject.component.music.media.PlayControler;
 import com.maowubian.baseproject.databinding.HeaderBinding;
 import com.maowubian.baseproject.factory.StoreConfigFactory;
 
@@ -31,8 +31,6 @@ public class HomeEvents {
         View headerView = nv.getHeaderView(0);
         HeaderBinding bind = DataBindingUtil.bind(headerView);
         PlayerStatus playerStatus = new PlayerStatus();
-        PlayControlEvent playControlEvent = new PlayControlEvent(conn,playerStatus);
-        bind.setPlayControl(playControlEvent);
         ImageView bg = (ImageView) headerView.findViewById(R.id.bg);
 
 

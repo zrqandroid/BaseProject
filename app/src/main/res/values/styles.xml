@@ -13,8 +13,8 @@
         <item name="android:textSize">@dimen/sp14</item>
     </style>
 
-    <style name="ShowFromBottomHideBottom" parent="Theme.AppCompat.Light.NoActionBar">
-
+    <style name="TextStyle" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textSize">@dimen/sp18</item>
 
     </style>
 
@@ -29,5 +29,9 @@
         <item name="android:textSize">14sp</item>
 
     </style>
+
+    <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

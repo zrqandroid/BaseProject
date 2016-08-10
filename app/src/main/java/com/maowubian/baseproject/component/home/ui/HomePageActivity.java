@@ -17,6 +17,7 @@ import com.maowubian.baseproject.component.home.adapter.HomeVpAdapter;
 import com.maowubian.baseproject.component.home.events.NavigationPageHandler;
 import com.maowubian.baseproject.component.movie.ui.MovieFragment;
 import com.maowubian.baseproject.component.music.media.MediaConn;
+import com.maowubian.baseproject.component.music.media.PlayControler;
 import com.maowubian.baseproject.component.music.media.PlayerEvent;
 import com.maowubian.baseproject.component.music.media.service.MediaPalyerService;
 import com.maowubian.baseproject.component.music.ui.MusicFragment;
@@ -49,9 +50,7 @@ public class HomePageActivity extends AppCompatActivity {
         databinding = DataBindingUtil.setContentView(this, R.layout.activity_home_page);
         conn = new MediaConn();
         bindService(new Intent(mContext, MediaPalyerService.class), conn, Service.BIND_AUTO_CREATE);
-        processer = new NavigationPageHandler(databinding.nv, conn);
-
-//        HomeEvents.onNavigationCLick(databinding.nv,conn);
+        PlayControler.init(conn);
         init();
 
     }
@@ -85,6 +84,5 @@ public class HomePageActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         unbindService(conn);
-        processer.unRegister();
     }
 }

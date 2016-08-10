@@ -1,5 +1,6 @@
 package com.maowubian.baseproject.component.music.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
@@ -7,35 +8,74 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.maowubian.baseproject.R;
+import com.maowubian.baseproject.component.music.media.PlayControler;
+import com.maowubian.baseproject.component.music.media.data.MusicInfo;
+import com.maowubian.baseproject.component.music.media.data.MusicStatus;
+import com.maowubian.baseproject.component.music.media.inter.PlayControl;
+import com.maowubian.baseproject.databinding.HeadDataBinding;
 import com.maowubian.baseproject.databinding.MusicItemBinding;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by zhuruqiao on 16/8/5.
  */
-public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.MusicListHolder> {
+public class MusicListAdapter extends RecyclerView.Adapter {
 
     private Context mContext;
     private LayoutInflater inflater;
-    public MusicListAdapter(Context mContext){
-        this.mContext=mContext;
+    private List<MusicInfo> musicInfos;
+
+    private static final int HEAD = 0;
+    private static final int ITEM = 1;
+    private static final int FOOT = 2;
+
+
+    public MusicListAdapter(Activity mContext, List<MusicInfo> musicInfos) {
+        this.mContext = mContext;
+        this.musicInfos = musicInfos;
         inflater = LayoutInflater.from(mContext);
     }
 
 
     @Override
-    public MusicListHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        MusicItemBinding dataBinding = DataBindingUtil.inflate(inflater, R.layout.item_music, parent, true);
-        return new MusicListHolder(dataBinding);
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+        if (viewType == HEAD) {
+            return new HeadHolder((HeadDataBinding) DataBindingUtil.inflate(inflater, R.layout.item_head, parent, true));
+        } else {
+            return new MusicListHolder((MusicItemBinding) DataBindingUtil.inflate(inflater, R.layout.item_music, parent, true));
+        }
     }
 
     @Override
-    public void onBindViewHolder(MusicListHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        if (position == 0) {
 
+        } else {
+            MusicInfo info = musicInfos.get(position-1);
+            ((MusicListHolder) holder).binding.getRoot().setTag(info);
+            (((MusicListHolder) holder).binding).setInfo(info);
+            (((MusicListHolder) holder).binding).setControl(PlayControler.getInstance());
+            (((MusicListHolder) holder).binding).setStatus(new MusicStatus());
+        }
+
+
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (position == 0) {
+            return HEAD;
+        } else {
+            return ITEM;
+        }
     }
 
     @Override
     public int getItemCount() {
-        return 100;
+        return musicInfos.size() + 1;
     }
 
     public static class MusicListHolder extends RecyclerView.ViewHolder {
@@ -43,6 +83,17 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.Musi
         public MusicItemBinding binding;
 
         public MusicListHolder(MusicItemBinding dataBinding) {
+            super(dataBinding.getRoot());
+            binding = dataBinding;
+
+        }
+    }
+
+    public static class HeadHolder extends RecyclerView.ViewHolder {
+
+        public HeadDataBinding binding;
+
+        public HeadHolder(HeadDataBinding dataBinding) {
             super(dataBinding.getRoot());
             binding = dataBinding;
 

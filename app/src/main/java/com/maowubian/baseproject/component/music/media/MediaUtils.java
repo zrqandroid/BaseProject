@@ -17,7 +17,7 @@ import static android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
  */
 public class MediaUtils {
 
-    public static List<MusicInfo> get() {
+    public static List<MusicInfo> getLocalMusicList() {
         ContentResolver contentResolver = AppContext.mContext.getContentResolver();
 
         Cursor cursor = contentResolver.query(EXTERNAL_CONTENT_URI, MusicInfo.getProjection(), MusicInfo.Column.IS_MUSIC.name() + "=?", new String[]{"1"}, null);
@@ -31,35 +31,34 @@ public class MediaUtils {
                 musicInfo.name = cursor.getString(MusicInfo.Column.NAME.ordinal());
                 musicInfo.artist = cursor.getString(MusicInfo.Column.ARTIST.ordinal());
                 musicInfo.date_added = cursor.getString(MusicInfo.Column.DATE_ADDED.ordinal());
-                musicInfo.duration = cursor.getString(MusicInfo.Column.DURATION.ordinal());
+                musicInfo.duration = cursor.getInt(MusicInfo.Column.DURATION.ordinal());
                 musicInfo.size = cursor.getString(MusicInfo.Column.SIZE.ordinal());
                 musicInfo.path = cursor.getString(MusicInfo.Column.PATH.ordinal());
                 list.add(musicInfo);
             }
             cursor.close();
         }
-        Logger.i("music list:%s", list.toString());
         return list;
 
     }
 
     public static String getLocalMusicCount() {
 
-        return "(" + get().size() + ")";
+        return "(" + getLocalMusicList().size() + ")";
     }
 
     public static String getRecentMusicCount() {
 
-        return "(" + get().size() + ")";
+        return "(" + getLocalMusicList().size() + ")";
     }
 
     public static String getFavouriteMusicCount() {
 
-        return "(" + get().size() + ")";
+        return "(" + getLocalMusicList().size() + ")";
     }
 
     public static String getDownloadMusicCount() {
 
-        return "(" + get().size() + ")";
+        return "(" + getLocalMusicList().size() + ")";
     }
 }

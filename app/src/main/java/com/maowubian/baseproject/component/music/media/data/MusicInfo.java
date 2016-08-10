@@ -3,7 +3,7 @@ package com.maowubian.baseproject.component.music.media.data;
 /**
  * Created by zhuruqiao on 16/8/8.
  */
-public class MusicInfo {
+public class MusicInfo  {
 
     public String id;
     public String path;
@@ -12,7 +12,7 @@ public class MusicInfo {
     public String album;
     public String size;
     public String date_added;
-    public String duration;
+    public int duration;
 
     public enum Column {
         ID("_id", 0),
@@ -57,6 +57,10 @@ public class MusicInfo {
                 ", duration='" + duration + '\'' +
                 '}';
     }
+
+    public  String getDurationTime(){
+        return duration/60000+":"+duration%60000/1000;
+    }
 //
 //    public String _id;
 //    public String _data;// /storage/emulated/0/Download/music.mp3
@@ -85,5 +89,6 @@ public class MusicInfo {
 //    public String album_id;
 //    public String album_key;
 //    public String album; 专辑
+
 
 }

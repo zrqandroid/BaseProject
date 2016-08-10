@@ -36,13 +36,7 @@ public class BannerAdapter extends PagerAdapter {
     @Override
     public View instantiateItem(ViewGroup container, int position) {
         View view = views.get(position);
-        ImageView viewById = (ImageView) view.findViewById(R.id.banner);
         container.addView(view);
-        if (position%2==0){
-            viewById.setBackgroundColor(Color.GREEN);
-        }else {
-            viewById.setBackgroundColor(Color.BLUE);
-        }
         return view;
     }
 

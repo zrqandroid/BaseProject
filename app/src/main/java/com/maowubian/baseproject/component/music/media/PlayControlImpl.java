@@ -42,7 +42,7 @@ public class PlayControlImpl extends Binder implements PlayControl, MediaPlayer.
         }else {
             mediaPlayer.reset();
             try {
-                mediaPlayer.setDataSource(StoreConfigFactory.getStorePath(StoreConfigFactory.DIR_DOWNLOAD)+"music.mp3");
+                mediaPlayer.setDataSource(path);
                 mediaPlayer.prepare();
             } catch (IOException e) {
                 e.printStackTrace();
