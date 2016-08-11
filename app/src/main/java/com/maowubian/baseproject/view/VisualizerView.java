@@ -14,8 +14,8 @@ import com.orhanobut.logger.Logger;
 
 public class VisualizerView extends View implements Visualizer.OnDataCaptureListener {
 
-    private static final int DN_W = 470;//view宽度与单个音频块占比 - 正常480 需微调
-    private static final int DN_H = 360;//view高度与单个音频块占比
+    private static final int DN_W = 480;//view宽度与单个音频块占比 - 正常480 需微调
+    private static final int DN_H = 240;//view高度与单个音频块占比
     private static final int DN_SL = 4;//单个音频块宽度
     private static final int DN_SW = 2;//单个音频块高度
 
@@ -25,7 +25,7 @@ public class VisualizerView extends View implements Visualizer.OnDataCaptureList
     private float strokeWidth = 0;
     private float strokeLength = 0;
 
-    protected final static int MAX_LEVEL = 30;//音量柱·音频块 - 最大个数
+    protected final static int MAX_LEVEL = 48;//音量柱·音频块 - 最大个数
 
     protected final static int CYLINDER_NUM = 64;//音量柱 - 最大个数
 
@@ -92,32 +92,36 @@ public class VisualizerView extends View implements Visualizer.OnDataCaptureList
             value = 1;
         }//最少有一个频谱块
         for (int i = 0; i < value; i++) { //每个能量柱绘制value个能量块
-            float y = (getHeight() / 2 - i * vgap - vgap);//计算y轴坐标
+            float y = (getHeight() - i * vgap - vgap);//计算y轴坐标
             float y1 = (getHeight() / 2 + i * vgap + vgap);
             //绘制频谱块
             mPaint.setColor(Color.WHITE);//画笔颜色
+            mPaint.setAlpha(128);
+            if (i==value-1){
+                mPaint.setColor(Color.RED);
+            }
             canvas.drawLine(x, y, (x + strokeLength), y, mPaint);//绘制频谱块
 
-            //绘制音量柱倒影
-            if (i <= 6 && value > 0) {
-                mPaint.setColor(Color.WHITE);//画笔颜色
-                mPaint.setAlpha(100 - (100 / 6 * i));//倒影颜色
-                canvas.drawLine(x, y1, (x + strokeLength), y1, mPaint);//绘制频谱块
-            }
+
+//            //绘制音量柱倒影
+//            if (i <= 6 && value > 0) {
+//                mPaint.setColor(Color.WHITE);//画笔颜色
+//                mPaint.setAlpha(100 - (100 / 6 * i));//倒影颜色
+////                canvas.drawLine(x, y1, (x + strokeLength), y1, mPaint);//绘制频谱块
+//            }
         }
     }
 
     @Override
     public void onDraw(Canvas canvas) {
-        int j = -4;
-        for (int i = 0; i < CYLINDER_NUM / 2 - 4; i++) { //绘制25个能量柱
+        for (int i = 0; i < CYLINDER_NUM ; i++) { //绘制25个能量柱
 
-            drawCylinder(canvas, strokeWidth / 2 + hgap + i * (hgap + strokeLength), mData[i]);
+            drawCylinder(canvas, strokeWidth  + hgap + i * (hgap + strokeLength), mData[i]);
         }
-        for (int i = CYLINDER_NUM; i >= CYLINDER_NUM / 2 - 4; i--) {
-            j++;
-            drawCylinder(canvas, strokeWidth / 2 + hgap + (CYLINDER_NUM / 2 + j - 1) * (hgap + strokeLength), mData[i - 1]);
-        }
+//        for (int i = CYLINDER_NUM; i >= CYLINDER_NUM / 2 - 4; i--) {
+//            j++;
+//            drawCylinder(canvas, strokeWidth / 2 + hgap + (CYLINDER_NUM / 2 + j - 1) * (hgap + strokeLength), mData[i - 1]);
+//        }
     }
 
     /**
@@ -127,7 +131,7 @@ public class VisualizerView extends View implements Visualizer.OnDataCaptureList
      */
     public void setVisualizer(Visualizer visualizer) {
         if (visualizer != null) {
-            visualizer.setCaptureSize(Visualizer.getCaptureSizeRange()[0]);
+            visualizer.setCaptureSize(Visualizer.getCaptureSizeRange()[1]);
             levelStep = 230 / MAX_LEVEL;
             visualizer.setDataCaptureListener(this, Visualizer.getMaxCaptureRate(), false, true);
             visualizer.setEnabled(true);

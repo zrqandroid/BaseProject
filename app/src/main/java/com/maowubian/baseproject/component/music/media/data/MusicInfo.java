@@ -63,7 +63,7 @@ public class MusicInfo  {
     }
 
     public  String getDurationTime(){
-        return duration/60000+":"+duration%60000/1000;
+        return "时长:"+duration/60000+":"+duration%60000/1000;
     }
 //
 //    public String _id;
