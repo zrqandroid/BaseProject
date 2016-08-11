@@ -2,15 +2,11 @@ package com.maowubian.baseproject.component.music.media;
 
 
 import android.view.View;
-import android.widget.ProgressBar;
 
-import com.maowubian.baseproject.R;
 import com.maowubian.baseproject.component.music.media.data.MusicInfo;
+import com.maowubian.baseproject.component.music.media.data.MusicStatus;
+import com.maowubian.baseproject.databinding.MusicItemBinding;
 import com.orhanobut.logger.Logger;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 /**
  * Created by zhuruqiao on 16/8/5.
@@ -23,16 +19,23 @@ public class PlayControler {
 
     private MusicInfo info;
 
+    private MusicItemBinding currentPlayItem;
+
 
     private PlayControler(MediaConn conn) {
         this.conn = conn;
     }
 
     public void start(View view) {
-
         info = (MusicInfo) view.getTag();
         Logger.i("播放歌曲:%s", info.name);
         conn.control.play(info.path);
+        if (currentPlayItem!=null){
+            currentPlayItem.musicProgress.setVisibility(View.INVISIBLE);
+        }
+        currentPlayItem = info.binding;
+        currentPlayItem.musicProgress.setVisibility(View.VISIBLE);
+        currentPlayItem.setStatus(new MusicStatus());
 
     }
 
@@ -55,6 +58,7 @@ public class PlayControler {
     }
 
     public MusicInfo getCurrentPlayMusic() {
+
         return info;
     }
 

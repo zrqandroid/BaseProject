@@ -55,8 +55,8 @@ dependencies {
 
     compile 'org.greenrobot:eventbus:3.0.0'
 
-    //my
-
+    //点击扩散
+    compile 'com.kifile:MaterialView:1.0'
 
 
 }

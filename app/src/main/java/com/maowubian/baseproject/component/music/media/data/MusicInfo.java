@@ -1,11 +1,14 @@
 package com.maowubian.baseproject.component.music.media.data;
 
+import com.maowubian.baseproject.databinding.MusicDataBinding;
+import com.maowubian.baseproject.databinding.MusicItemBinding;
+
 /**
  * Created by zhuruqiao on 16/8/8.
  */
 public class MusicInfo  {
 
-    public String id;
+    public int id;
     public String path;
     public String name;
     public String artist;
@@ -13,6 +16,7 @@ public class MusicInfo  {
     public String size;
     public String date_added;
     public int duration;
+    public MusicItemBinding binding;
 
     public enum Column {
         ID("_id", 0),

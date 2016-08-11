@@ -4,6 +4,9 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.audiofx.Visualizer;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -52,7 +55,6 @@ public class HomePageActivity extends AppCompatActivity {
         bindService(new Intent(mContext, MediaPalyerService.class), conn, Service.BIND_AUTO_CREATE);
         PlayControler.init(conn);
         init();
-
     }
 
     private void init() {

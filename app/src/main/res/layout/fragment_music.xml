@@ -91,7 +91,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp50"
                     android:layout_marginTop="@dimen/dp5"
-                    android:background="@color/white"
+                    android:background="@drawable/ripple_bg"
                     android:gravity="center_vertical"
                     android:onClick="@{MusicPageEvent.toLocalList}"
                     android:orientation="horizontal"
@@ -107,7 +107,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="@dimen/dp4"
-                        android:background="@drawable/bg_button_line"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 

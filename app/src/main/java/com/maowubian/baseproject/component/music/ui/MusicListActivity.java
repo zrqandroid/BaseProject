@@ -4,6 +4,7 @@ package com.maowubian.baseproject.component.music.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.AudioManager;
 import android.os.Parcelable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -45,6 +46,7 @@ public class MusicListActivity extends BaseActivity<MusicListPageBiding> {
 
     @Override
     protected void init() {
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
         Intent intent = getIntent();
         String title = intent.getStringExtra(TITLE);
         musicInfos = MediaUtils.getLocalMusicList();

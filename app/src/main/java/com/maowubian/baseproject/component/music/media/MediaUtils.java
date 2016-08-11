@@ -26,7 +26,7 @@ public class MediaUtils {
         if (cursor != null) {
             while (cursor.moveToNext()) {
                 MusicInfo musicInfo = new MusicInfo();
-                musicInfo.id = cursor.getString(MusicInfo.Column.ID.ordinal());
+                musicInfo.id = cursor.getInt(MusicInfo.Column.ID.ordinal());
                 musicInfo.album = cursor.getString(MusicInfo.Column.ALBUM.ordinal());
                 musicInfo.name = cursor.getString(MusicInfo.Column.NAME.ordinal());
                 musicInfo.artist = cursor.getString(MusicInfo.Column.ARTIST.ordinal());
