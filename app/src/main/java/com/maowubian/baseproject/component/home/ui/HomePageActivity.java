@@ -4,9 +4,6 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
-import android.media.audiofx.Visualizer;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -17,17 +14,13 @@ import android.view.WindowManager;
 import com.maowubian.baseproject.R;
 import com.maowubian.baseproject.component.game.ui.GameFragment;
 import com.maowubian.baseproject.component.home.adapter.HomeVpAdapter;
-import com.maowubian.baseproject.component.home.events.NavigationPageHandler;
+import com.maowubian.baseproject.component.home.events.SideBarEvent;
 import com.maowubian.baseproject.component.movie.ui.MovieFragment;
 import com.maowubian.baseproject.component.music.media.MediaConn;
 import com.maowubian.baseproject.component.music.media.PlayControler;
-import com.maowubian.baseproject.component.music.media.PlayerEvent;
 import com.maowubian.baseproject.component.music.media.service.MediaPalyerService;
 import com.maowubian.baseproject.component.music.ui.MusicFragment;
 import com.maowubian.baseproject.databinding.HomeDatabinding;
-import com.orhanobut.logger.Logger;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +36,6 @@ public class HomePageActivity extends AppCompatActivity {
 
     private Context mContext;
     private MediaConn conn;
-    private NavigationPageHandler processer;
 
     @Override
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
@@ -54,6 +46,7 @@ public class HomePageActivity extends AppCompatActivity {
         conn = new MediaConn();
         bindService(new Intent(mContext, MediaPalyerService.class), conn, Service.BIND_AUTO_CREATE);
         PlayControler.init(conn);
+        SideBarEvent.init(databinding.sideBar);
         init();
     }
 

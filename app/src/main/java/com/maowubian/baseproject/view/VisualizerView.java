@@ -96,7 +96,6 @@ public class VisualizerView extends View implements Visualizer.OnDataCaptureList
             float y1 = (getHeight() / 2 + i * vgap + vgap);
             //绘制频谱块
             mPaint.setColor(Color.WHITE);//画笔颜色
-            mPaint.setAlpha(128);
             if (i==value-1){
                 mPaint.setColor(Color.RED);
             }
@@ -131,7 +130,6 @@ public class VisualizerView extends View implements Visualizer.OnDataCaptureList
      */
     public void setVisualizer(Visualizer visualizer) {
         if (visualizer != null) {
-            visualizer.setCaptureSize(Visualizer.getCaptureSizeRange()[1]);
             levelStep = 230 / MAX_LEVEL;
             visualizer.setDataCaptureListener(this, Visualizer.getMaxCaptureRate(), false, true);
             visualizer.setEnabled(true);

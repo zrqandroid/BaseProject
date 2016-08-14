@@ -8,6 +8,12 @@ import com.maowubian.baseproject.component.music.media.data.MusicStatus;
 import com.maowubian.baseproject.databinding.MusicItemBinding;
 import com.orhanobut.logger.Logger;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.List;
+
 /**
  * Created by zhuruqiao on 16/8/5.
  */
@@ -21,9 +27,12 @@ public class PlayControler {
 
     private MusicItemBinding currentPlayItem;
 
+    private List<MusicInfo> musicList;
+
 
     private PlayControler(MediaConn conn) {
         this.conn = conn;
+        EventBus.getDefault().register(this);
     }
 
     public void start(View view) {
@@ -61,6 +70,15 @@ public class PlayControler {
 
         return info;
     }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventMainThread(Integer integer) {
+        if (integer==PlayControlImpl.COMPLETE){
 
+        }
 
+    }
+
+    public void setMusicList(List<MusicInfo> musicList) {
+        this.musicList = musicList;
+    }
 }

@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
     <data class="HeaderBinding">
 
+            <import type="com.maowubian.baseproject.component.home.events.SideBarEvent"/>
 
     </data>
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="350dp"
         android:background="@color/color1">
@@ -15,14 +17,18 @@
             android:id="@+id/bg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="fitCenter" />
+            android:background="@mipmap/bg"
+            android:scaleType="centerCrop" />
 
-        <ProgressBar
-            android:id="@+id/music_progress"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp4"
-            />
+            android:layout_height="@dimen/dp30"
+            android:layout_marginTop="@dimen/dp20"
+            android:gravity="center"
+            android:text="真的爱你"
+            android:textColor="@color/whiteCC"
+            android:textSize="@dimen/sp18" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,34 +38,41 @@
             android:orientation="horizontal">
 
             <ImageButton
+                android:id="@+id/loop"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/dp30"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:background="@null"
                 android:scaleType="fitCenter"
-                android:src="@mipmap/desk_loop" />
+                android:onClick="@{SideBarEvent.loop}"
+                android:src="@drawable/loop_loop" />
 
             <ImageButton
+                android:id="@+id/pre"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/dp30"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:background="@null"
                 android:scaleType="fitCenter"
+                android:onClick="@{SideBarEvent.pre}"
                 android:src="@drawable/pre" />
 
             <ImageButton
-                android:id="@+id/play"
+                android:id="@+id/play_or_pause"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1.5"
                 android:background="@null"
+                android:onClick="@{SideBarEvent.playOrPause}"
                 android:scaleType="fitCenter"
                 android:src="@drawable/play" />
 
             <ImageButton
+                android:id="@+id/next"
                 android:layout_width="0dp"
+                android:onClick="@{SideBarEvent.next}"
                 android:layout_height="@dimen/dp30"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
@@ -74,8 +87,10 @@
                 android:layout_weight="1">
 
                 <CheckBox
+                    android:id="@+id/favourite"
                     android:layout_width="@dimen/dp30"
                     android:layout_height="@dimen/dp30"
+                    android:onClick="@{SideBarEvent.favourite}"
                     android:layout_centerInParent="true"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/love"

@@ -4,7 +4,6 @@
 
     <data class="HomeDatabinding">
 
-
         <import type="com.maowubian.baseproject.component.home.events.HomeEvents" />
     </data>
 
@@ -21,7 +20,7 @@
             android:overScrollMode="never" />
 
         <android.support.design.widget.NavigationView
-            android:id="@+id/nv"
+            android:id="@+id/side_bar"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"

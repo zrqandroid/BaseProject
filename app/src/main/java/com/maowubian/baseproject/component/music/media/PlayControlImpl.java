@@ -21,39 +21,50 @@ import java.util.TimerTask;
 /**
  * Created by zhuruqiao on 16/8/5.
  */
-public class PlayControlImpl extends Binder implements PlayControl, MediaPlayer.OnPreparedListener {
+public class PlayControlImpl extends Binder implements PlayControl, MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener {
 
-    private  Equalizer mEqualizer;
-    private  Timer timer;
+    private Equalizer mEqualizer;
+
+    private Timer timer;
+
     private MediaPlayer mediaPlayer;
-    private boolean isPause=false;
+
+    private boolean isPause = false;
+
     private EventBus eventBus;
+
     private PlayerEvent playerEvent;
+
     public Visualizer mVisualizer;
+
     private static PlayControlImpl instance;
 
+    public static final int COMPLETE = 2;
 
-    public static PlayControlImpl getInstance(){
+
+    public static PlayControlImpl getInstance() {
         return instance;
     }
+
     public PlayControlImpl(MediaPlayer mediaPlayer) {
-        this.mediaPlayer=mediaPlayer;
+        this.mediaPlayer = mediaPlayer;
         mediaPlayer.setOnPreparedListener(this);
+        mediaPlayer.setOnCompletionListener(this);
         eventBus = EventBus.getDefault();
 
     }
 
-    public static void init(MediaPlayer mediaPlayer){
+    public static void init(MediaPlayer mediaPlayer) {
         instance = new PlayControlImpl(mediaPlayer);
     }
 
     @Override
     public void play(String path) {
-          timer = new Timer(true);
-        if (isPause){
+        timer = new Timer(true);
+        if (isPause) {
             mediaPlayer.start();
             startSchedule();
-        }else {
+        } else {
             mediaPlayer.reset();
             try {
                 mediaPlayer.setDataSource(path);
@@ -62,7 +73,6 @@ public class PlayControlImpl extends Binder implements PlayControl, MediaPlayer.
                 e.printStackTrace();
             }
         }
-
 
 
     }
@@ -74,7 +84,7 @@ public class PlayControlImpl extends Binder implements PlayControl, MediaPlayer.
                 playerEvent.setCurrentPosition(mediaPlayer.getCurrentPosition());
                 eventBus.post(playerEvent);
             }
-        },0,50);
+        }, 0, 50);
     }
 
     @Override
@@ -85,23 +95,35 @@ public class PlayControlImpl extends Binder implements PlayControl, MediaPlayer.
     @Override
     public void pause() {
         mediaPlayer.pause();
-        isPause=true;
+        isPause = true;
         timer.cancel();
 
     }
 
     @Override
     public void onPrepared(MediaPlayer mp) {
-
         int duration = mediaPlayer.getDuration();
-        playerEvent = new PlayerEvent(duration,0);
+        playerEvent = new PlayerEvent(duration, 0);
         eventBus.post(playerEvent);
         mediaPlayer.start();
-        mVisualizer = new Visualizer(mediaPlayer.getAudioSessionId());
-        mEqualizer = new Equalizer(0, mediaPlayer.getAudioSessionId());
-        mEqualizer.setEnabled(true);
-        eventBus.post(1);
-        mVisualizer.setEnabled(true);
+        initVIsualizer();
         startSchedule();
+    }
+
+    private void initVIsualizer() {
+        if (mVisualizer == null) {
+            int sessionId = mediaPlayer.getAudioSessionId();
+            mVisualizer = new Visualizer(sessionId);
+            mVisualizer.setCaptureSize(Visualizer.getCaptureSizeRange()[1]);
+            mEqualizer = new Equalizer(0, sessionId);
+            mEqualizer.setEnabled(true);
+            eventBus.post(1);
+        }
+    }
+
+    @Override
+    public void onCompletion(MediaPlayer mp) {
+        eventBus.post(COMPLETE);
+
     }
 }

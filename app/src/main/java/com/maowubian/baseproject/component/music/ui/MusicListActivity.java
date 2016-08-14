@@ -59,6 +59,10 @@ public class MusicListActivity extends BaseActivity<MusicListPageBiding> {
         });
         dataBinding.musicInfoList.setLayoutManager(new LinearLayoutManager(mContext));
         dataBinding.musicInfoList.setAdapter(new MusicListAdapter(mContext, musicInfos));
+        changeTitleBarAlpha();
+    }
+
+    private void changeTitleBarAlpha() {
         dataBinding.musicInfoList.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {

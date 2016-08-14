@@ -63,14 +63,19 @@ public class MusicListAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (position == 0) {
             headDataBinding = ((HeadHolder) holder).binding;
+            if (PlayControlImpl.getInstance().mVisualizer!=null){
+                headDataBinding.visualizerView.setVisualizer(PlayControlImpl.getInstance().mVisualizer);
+            }
         } else {
             MusicItemBinding musicItemBinding = ((MusicListHolder) holder).binding;
             MusicInfo info = musicInfos.get(position - 1);
             info.binding= musicItemBinding;
             musicItemBinding.getRoot().setTag(info);
             musicItemBinding.setInfo(info);
-            musicItemBinding.setControl(PlayControler.getInstance());
-            MusicInfo musicInfo = PlayControler.getInstance().getCurrentPlayMusic();
+            PlayControler controler = PlayControler.getInstance();
+            controler.setMusicList(musicInfos);
+            musicItemBinding.setControl(controler);
+            MusicInfo musicInfo = controler.getCurrentPlayMusic();
             if (musicInfo != null) {
                 if (info.id == musicInfo.id) {
                     musicItemBinding.musicProgress.setVisibility(View.VISIBLE);
