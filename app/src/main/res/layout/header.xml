@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data class="HeaderBinding">
 
-            <import type="com.maowubian.baseproject.component.home.events.SideBarEvent"/>
+        <import type="com.maowubian.baseproject.component.home.events.SideBarEvent" />
 
     </data>
 
@@ -44,9 +45,9 @@
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:background="@null"
-                android:scaleType="fitCenter"
                 android:onClick="@{SideBarEvent.loop}"
-                android:src="@drawable/loop_loop" />
+                android:scaleType="fitCenter"
+                app:status="@{'0'}"/>
 
             <ImageButton
                 android:id="@+id/pre"
@@ -55,8 +56,8 @@
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:background="@null"
-                android:scaleType="fitCenter"
                 android:onClick="@{SideBarEvent.pre}"
+                android:scaleType="fitCenter"
                 android:src="@drawable/pre" />
 
             <ImageButton
@@ -72,11 +73,11 @@
             <ImageButton
                 android:id="@+id/next"
                 android:layout_width="0dp"
-                android:onClick="@{SideBarEvent.next}"
                 android:layout_height="@dimen/dp30"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:background="@null"
+                android:onClick="@{SideBarEvent.next}"
                 android:scaleType="fitCenter"
                 android:src="@drawable/next" />
 
@@ -90,11 +91,11 @@
                     android:id="@+id/favourite"
                     android:layout_width="@dimen/dp30"
                     android:layout_height="@dimen/dp30"
-                    android:onClick="@{SideBarEvent.favourite}"
                     android:layout_centerInParent="true"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/love"
-                    android:button="@null" />
+                    android:button="@null"
+                    android:onClick="@{SideBarEvent.favourite}" />
             </RelativeLayout>
 
         </LinearLayout>

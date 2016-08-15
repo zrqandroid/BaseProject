@@ -32,8 +32,8 @@ import java.util.List;
 public class MusicListActivity extends BaseActivity<MusicListPageBiding> {
 
     private static final String TITLE = "title";
-    private int distance = 0;
 
+    private int distance = 0;
 
     private List<MusicInfo> musicInfos;
 

@@ -2,6 +2,7 @@ package com.maowubian.baseproject.component.home.events;
 
 import android.content.Context;
 import android.content.Intent;
+import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;
 import android.support.design.widget.NavigationView;
 import android.view.Menu;
@@ -10,8 +11,11 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.maowubian.baseproject.R;
+import com.maowubian.baseproject.api.AppContext;
 import com.maowubian.baseproject.component.design.ui.TestWindowActivity;
+import com.maowubian.baseproject.component.music.media.MediaUtils;
 import com.maowubian.baseproject.databinding.HeaderBinding;
+import com.maowubian.commonutils.SpUtils;
 import com.orhanobut.logger.Logger;
 
 /**
@@ -45,8 +49,6 @@ public class SideBarEvent {
 
     private void doMenuItemClick(Menu menu) {
         for (int i = 0; i < menu.size(); i++) {
-
-            Logger.i("哈哈");
             MenuItem item = menu.getItem(i);
             item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
@@ -67,7 +69,6 @@ public class SideBarEvent {
                         case R.id.about:
                             doAdvice();
                             break;
-
                     }
 
                     return true;
@@ -102,21 +103,8 @@ public class SideBarEvent {
     public static void loop(View view) {
         ImageButton bt = (ImageButton) view;
         loop++;
-        switch (loop % 4) {
-            case LOOP_LOOP:
-                bt.setImageResource(R.drawable.loop_loop);
-                break;
-            case LOOP_ORDER:
-                bt.setImageResource(R.drawable.loop_order);
-                break;
-            case LOOP_ONE:
-                bt.setImageResource(R.drawable.loop_one);
-                break;
-            case LOOP_SHUFFLE:
-                bt.setImageResource(R.drawable.loop_shuffle);
-                break;
-
-        }
+        saveStatus(bt, loop % 4);
+        SpUtils.saveData(AppContext.mContext, MediaUtils.LOOP_TYPE,loop%4);
 
 
     }
@@ -139,5 +127,30 @@ public class SideBarEvent {
     public static void favourite(View view) {
 
 
+    }
+
+    @BindingAdapter({"app:status"})
+    public static void setLoopStatus(ImageButton view,int status){
+        int anInt = SpUtils.getInt(AppContext.mContext, MediaUtils.LOOP_TYPE);
+        saveStatus(view, anInt);
+
+    }
+
+    private static void saveStatus(ImageButton view, int anInt) {
+        switch (anInt) {
+            case LOOP_LOOP:
+                view.setImageResource(R.drawable.loop_loop);
+                break;
+            case LOOP_ORDER:
+                view.setImageResource(R.drawable.loop_order);
+                break;
+            case LOOP_ONE:
+                view.setImageResource(R.drawable.loop_one);
+                break;
+            case LOOP_SHUFFLE:
+                view.setImageResource(R.drawable.loop_shuffle);
+                break;
+
+        }
     }
 }

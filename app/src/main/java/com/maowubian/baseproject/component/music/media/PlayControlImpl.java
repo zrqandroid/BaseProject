@@ -7,6 +7,7 @@ import android.media.audiofx.Visualizer;
 import android.os.Binder;
 import android.util.Log;
 
+import com.maowubian.baseproject.component.music.media.data.MusicInfo;
 import com.maowubian.baseproject.component.music.media.inter.PlayControl;
 import com.maowubian.baseproject.factory.StoreConfigFactory;
 import com.orhanobut.logger.Logger;
@@ -41,6 +42,8 @@ public class PlayControlImpl extends Binder implements PlayControl, MediaPlayer.
 
     public static final int COMPLETE = 2;
 
+    private String currentPlayPath;
+
 
     public static PlayControlImpl getInstance() {
         return instance;
@@ -60,6 +63,7 @@ public class PlayControlImpl extends Binder implements PlayControl, MediaPlayer.
 
     @Override
     public void play(String path) {
+        currentPlayPath=path;
         timer = new Timer(true);
         if (isPause) {
             mediaPlayer.start();
@@ -121,9 +125,12 @@ public class PlayControlImpl extends Binder implements PlayControl, MediaPlayer.
         }
     }
 
+    //when the song was over,naturally,This method will be callback
     @Override
     public void onCompletion(MediaPlayer mp) {
-        eventBus.post(COMPLETE);
+        MusicInfo musicInfo = MediaUtils.getMusicByLoopType(currentPlayPath);
+        Logger.i("下一曲:%s",musicInfo.path);
 
+        play(musicInfo.path);
     }
 }
