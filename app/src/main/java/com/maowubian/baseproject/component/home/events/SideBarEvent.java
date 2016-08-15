@@ -102,6 +102,7 @@ public class SideBarEvent {
 
     public static void loop(View view) {
         ImageButton bt = (ImageButton) view;
+        loop=SpUtils.getInt(AppContext.mContext,MediaUtils.LOOP_TYPE);
         loop++;
         saveStatus(bt, loop % 4);
         SpUtils.saveData(AppContext.mContext, MediaUtils.LOOP_TYPE,loop%4);

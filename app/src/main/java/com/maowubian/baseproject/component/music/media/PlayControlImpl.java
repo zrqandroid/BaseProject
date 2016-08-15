@@ -125,12 +125,11 @@ public class PlayControlImpl extends Binder implements PlayControl, MediaPlayer.
         }
     }
 
-    //when the song was over,naturally,This method will be callback
+    //when the song was over naturally,This method will be called back
     @Override
     public void onCompletion(MediaPlayer mp) {
         MusicInfo musicInfo = MediaUtils.getMusicByLoopType(currentPlayPath);
         Logger.i("下一曲:%s",musicInfo.path);
-
         play(musicInfo.path);
     }
 }

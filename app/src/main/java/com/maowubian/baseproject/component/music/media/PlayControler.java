@@ -48,6 +48,10 @@ public class PlayControler {
 
     }
 
+    public void pause(){
+        conn.control.pause();
+    }
+
     public static void init(MediaConn conn) {
         if (instance == null) {
             synchronized (PlayControler.class) {
@@ -70,6 +74,8 @@ public class PlayControler {
 
         return info;
     }
+
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(Integer integer) {
         if (integer==PlayControlImpl.COMPLETE){

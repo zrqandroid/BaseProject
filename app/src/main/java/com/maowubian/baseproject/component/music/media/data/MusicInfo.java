@@ -15,6 +15,9 @@ public class MusicInfo  {
     public String album;
     public String size;
     public String date_added;
+    public String is_favourite;
+    public String is_recent_play;
+
     public int duration;
     public MusicItemBinding binding;
 

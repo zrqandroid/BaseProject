@@ -23,8 +23,11 @@ public class MediaUtils {
     public static final String LOOP_TYPE = "loop_type";
 
     public static final String CURRENT_PLAY_LIST = "current_play_list";
+
     public static final int LOCAL_LIST = 0;
+
     public static final int RECENT_PLAY = 1;
+
     public static final int FAVOURITE = 2;
 
     private static final int LOOP_LOOP = 0;
